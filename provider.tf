@@ -1,6 +1,8 @@
 provider "aws" {
   region = var.region
   default_tags {
-    tags = "devops-em"
+    tags = {
+      Project = "devops-em"
+    }
   }
 }
