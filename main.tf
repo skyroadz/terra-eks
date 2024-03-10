@@ -16,13 +16,13 @@ module "eks_managed_node_group" {
   source = "terraform-aws-modules/eks/aws//modules/eks-managed-node-group"
 
   name            = "spot"
-  cluster_name    = module.eks.cluster_name
-  cluster_version = module.eks.cluster_version
+  cluster_name    = "devops-em"
+  cluster_version = "1.29"
 
-  subnet_ids = module.vpc.private_subnets
+  subnet_ids = ["subnet-06c9ddfb206565f9e", "subnet-071a7256a950fe538", "subnet-0fe7df21aaa759ec5" ]
 
-  cluster_primary_security_group_id = module.eks.cluster_primary_security_group_id
-  vpc_security_group_ids            = [module.eks.node_security_group_id]
+  cluster_primary_security_group_id = "sg-0b3c7246de83dec3c"
+  vpc_security_group_ids            = ["sg-0e88ea302246dace2"]
 
 
   min_size     = 2
