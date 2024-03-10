@@ -9,6 +9,7 @@ module "eks_blueprints_addons" {
 
   # Create Addon (Helm Release) w/ IAM Role for Service Account (IRSA)
   enable_argocd             = true
+  
   enable_metrics_server     = true 
   enable_aws_load_balancer_controller = true 
 }
