@@ -1,8 +1,27 @@
-# eks_cluster
+# EKS Cluster Module
 
 > This Terraform Module manages the creation of an EKS cluster, it combines the official terraform module alongside aws-eks-blueprints for additional addons deployments (Loadbalancer Controller, ArgoCD, Metric Server and more!). 🚀 [Official-Module](https://github.com/aws-ia/terraform-aws-eks-blueprints-addons/blob/main/README.md#inputs) - 
 [EKS-Blueprints-Addons](https://github.com/aws-ia/terraform-aws-eks-blueprints-addons/blob/main/README.md#inputs)
 
+
+## Deployed EKS Cluster
+
+This module will bootstrap an Amazon EKS cluster, provisioning the follwoing:
+
+- VPC
+- 3 Private Subnets
+- 3 Public Subnets
+- NAT Gateway
+- Internet Gateway
+- EKS cluster
+- Security Groups 
+- aws-auth configmap to add users/roles for cluster access 
+
+It will also deploy the following addons inside the cluster alongside the requirenments such as IAM policy, roles, IRSA:
+
+- AWS Load Balancer Controller
+- Metrics server 
+- ArgoCD 
 
 
 
