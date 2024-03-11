@@ -1,4 +1,19 @@
-output "configure_kubectl" {
-  description = "Configure kubectl: make sure you're logged in with the correct AWS profile and run the following command to update your kubeconfig"
-  value       = "aws eks update-kubeconfig --name ${module.eks.cluster_name} --alias ${module.eks.cluster_name} --region ${var.region}"
+output "cluster_endpoint" {
+  description = "Endpoint for EKS control plane"
+  value       = module.eks.eks_cluster_endpoint
+}
+
+output "cluster_security_group_id" {
+  description = "Security group ids attached to the cluster control plane"
+  value       = module.eks.cluster_security_group_id
+}
+
+output "region" {
+  description = "AWS region"
+  value       = data.aws_region.current.name
+}
+
+output "eks_cluster_name" {
+  description = "Amazon EKS Cluster Name"
+  value       = module.eks.eks_cluster_id
 }
