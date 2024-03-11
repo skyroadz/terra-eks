@@ -1,7 +1,7 @@
 module "auth" {
-  depends_on = [ module.eks_blueprints_addons ]
-  source  = "terraform-aws-modules/eks/aws//modules/aws-auth"
-  version = "~> 20.0"
+  depends_on = [module.eks_blueprints_addons]
+  source     = "terraform-aws-modules/eks/aws//modules/aws-auth"
+  version    = "~> 20.0"
 
   manage_aws_auth_configmap = true
 
@@ -26,18 +26,18 @@ module "auth" {
   ]
 }
 
-  provider "kubernetes" {
-    host                   = module.eks.cluster_endpoint
-    cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      command     = "aws"
-      args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
-    }
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
   }
+}
 
-  provider "kubectl" {
+provider "kubectl" {
   apply_retry_count      = 15
   host                   = module.eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
@@ -46,6 +46,6 @@ module "auth" {
   exec {
     api_version = "client.authentication.k8s.io/v1alpha1"
     command     = "aws"
-    args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
   }
 }

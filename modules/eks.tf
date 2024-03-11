@@ -2,17 +2,17 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "20.1.0"
 
-  cluster_name                   = var.name
-  cluster_version                = var.cluster_version
-  cluster_endpoint_public_access = var.cluster_endpoint_public_access
+  cluster_name                    = var.name
+  cluster_version                 = var.cluster_version
+  cluster_endpoint_public_access  = var.cluster_endpoint_public_access
   cluster_endpoint_private_access = var.cluster_endpoint_private_access
-  
+
   cluster_addons = {
-    coredns = {}
+    coredns    = {}
     kube-proxy = {}
     vpc-cni = {
       before_compute = true
-      most_recent    = true 
+      most_recent    = true
       configuration_values = jsonencode({
         env = {
           # Reference docs https://docs.aws.amazon.com/eks/latest/userguide/cni-increase-ip-addresses.html
@@ -22,14 +22,14 @@ module "eks" {
       })
     }
   }
-  
+
   enable_cluster_creator_admin_permissions = var.enable_cluster_creator_admin_permissions
 
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
   eks_managed_node_group_defaults = {
-    disk_size      = var.eks_managed_node_group_defaults_disk_size
+    disk_size = var.eks_managed_node_group_defaults_disk_size
 
   }
 
