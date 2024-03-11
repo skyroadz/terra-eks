@@ -10,7 +10,7 @@ module "eks" {
   eks_managed_node_group_max_size     = 5
   eks_managed_node_group_desired_size = 2
 
-  eks_managed_node_group_capacity_type = "SPOT"
+  eks_managed_node_group_capacity_type  = "SPOT"
   eks_managed_node_group_instance_types = "t3.medium"
 
 }
