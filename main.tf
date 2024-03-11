@@ -11,6 +11,6 @@ module "eks" {
   eks_managed_node_group_desired_size = 2
 
   eks_managed_node_group_capacity_type  = "SPOT"
-  eks_managed_node_group_instance_types = "t3.medium"
+  eks_managed_node_group_instance_types = "c3.xlarge"
 
 }
