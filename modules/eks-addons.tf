@@ -8,10 +8,10 @@ module "eks_blueprints_addons" {
   oidc_provider_arn = module.eks.oidc_provider_arn
 
   # Create Addon (Helm Release) w/ IAM Role for Service Account (IRSA)
-  enable_argocd             = true
-  
-  enable_metrics_server     = true 
-  enable_aws_load_balancer_controller = true 
+  enable_argocd = true
+
+  enable_metrics_server               = true
+  enable_aws_load_balancer_controller = true
 }
 
 provider "helm" {
@@ -22,7 +22,7 @@ provider "helm" {
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
       command     = "aws"
-      args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
+      args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
     }
   }
 }
