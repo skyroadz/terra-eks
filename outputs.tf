@@ -10,7 +10,7 @@ output "cluster_security_group_id" {
 
 output "eks_cluster_name" {
   description = "Amazon EKS Cluster Name"
-  value       = module.eks.cluster_id
+  value       = module.eks.cluster_name
 }
 
 output "node_security_group_id" {
